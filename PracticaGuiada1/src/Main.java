@@ -7,13 +7,35 @@ public class Main {
         //System.out.println(fruits[2]);
 
         Person person = new Person("Diego", 18, 5);
+        Pet pet1 = new Pet("Chester", "Dog");
+        Pet pet2 = new Pet("Chevy", "Dog");
         
-        
-        for(Pet pet: person.getPetManager().getPets()){
-            System.out.println(pet.getPetName());
+        if(person.addPet(new Pet("Goldie", "Fish"))) {
+            IOManager.printMessage("Pet added successfully");
+        }else {
+            IOManager.printMessage("Failed to add pet");
         }
 
-        
-    }
+        person.addPet(pet1);
 
+        if(person.removePet(pet1)) {
+            IOManager.printMessage("Pet removed successfully");
+        }else {
+            IOManager.printMessage("Failed to remove");
+        }
+
+        if(person.updatePets(pet2, 0)) {
+            IOManager.printMessage("The Pet has been updated successfully");
+        }else {
+            IOManager.printMessage("Failed to update");
+        }
+
+        if(person.getPets().length == 0){
+            IOManager.printMessage("No pets found");
+        }else {
+            for (Pet pet : person.getPets()) {
+                IOManager.printMessage(pet.getPetName());
+            }
+        }
+    }
 }
